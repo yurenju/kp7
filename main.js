@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
   };
 
   var setupImage = function(event) {
-    var sx, sy, sWidth, sHeight, percent = 1;
+    var sx, sy, sWidth, sHeight, originWidth, percent = 1;
 
     var draw = function() {
       ctx.drawImage(img, sx, sy, sWidth * percent, sHeight * percent,
@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
     img = new Image();
     img.onload = function () {
+      originWidth = this.width;
       sx = (this.width * 2 - this.height) / 4;
       sy = 0;
       sWidth = this.height / 2;
@@ -56,6 +57,12 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
       zoom.oninput = function() {
         percent = (100 - parseInt(this.value)) / 100;
+        draw();
+      };
+
+      move.oninput = function() {
+        var pos = this.value;
+        sx = (originWidth - sWidth) * (parseInt(pos) / 100);
         draw();
       };
     };
