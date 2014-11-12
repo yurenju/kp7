@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
   ctx.fillStyle = '#43A8B1';
   ctx.fillRect(0, 0, 500, 500);
 
-  ctx.font = 'bold 70pt sans';
+  ctx.font = 'bold 70pt Helvetica, Arial, sans-serif';
   ctx.fillStyle = 'black';
   ctx.fillText('7', 350, 400);
 
