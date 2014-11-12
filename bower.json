@@ -1,0 +1,20 @@
+{
+  "name": "kp7",
+  "version": "0.0.1",
+  "authors": [
+    "Yuren Ju <yurenju@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "hidpi-canvas": "~1.0.9",
+    "FileSaver": "*",
+    "canvas-toBlob.js": "~0.1.3"
+  }
+}
