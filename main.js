@@ -81,11 +81,10 @@ document.addEventListener('DOMContentLoaded', function(e) {
     return false;
   };
 
-  ctx.fillStyle = '#43A8B1';
-  ctx.fillRect(0, 0, 500, 500);
-
-  ctx.font = 'bold 100pt "DIN Alternate", Helvetica, Arial, sans-serif';
-  ctx.fillStyle = 'black';
-  ctx.fillText('7', 350, 400);
-
+  var originalImage = new Image();
+  originalImage.onload = function() {
+    ctx.drawImage(this, 0, 0, this.width, this.height, 0, 0,
+      500 * ratio, 500 * ratio);
+  };
+  originalImage.src = "images/original.jpg";
 });
