@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
   save.onclick = function() {
     canvas.toBlob(function(blob) {
-        saveAs(blob, 'profile.png');
+      ga('_trackEvent', 'Picture', 'Download');
+      saveAs(blob, 'profile.png');
     });
   };
 
@@ -78,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
       setupImage(event);
     };
     reader.readAsDataURL(file);
+    ga('_trackEvent', 'Picture', 'Add');
     return false;
   };
 
