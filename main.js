@@ -3,6 +3,26 @@
 document.addEventListener('DOMContentLoaded', function(e) {
   'use strict';
 
+  $.material.init();
+
+  $("#zoom-slider").noUiSlider({
+    start: 0,
+    step: 1,
+    range: {
+      min: 0,
+      max: 100
+    }
+  });
+
+  $("#move-slider").noUiSlider({
+    start: 50,
+    step: 1,
+    range: {
+      min: 0,
+      max: 100
+    }
+  });
+
   var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext('2d');
   var holder = document.getElementById('holder');
@@ -56,16 +76,16 @@ document.addEventListener('DOMContentLoaded', function(e) {
       sHeight = this.height;
       draw();
 
-      zoom.oninput = function() {
-        percent = (100 - parseInt(this.value)) / 100;
+      $('#zoom-slider').on('slide', function(){
+        percent = (100 - parseInt($('#zoom-slider').val())) / 100;
         draw();
-      };
+      });
 
-      move.oninput = function() {
-        var pos = this.value;
+      $('#move-slider').on('slide', function(){
+        var pos = $('#move-slider').val();
         sx = (originWidth - sWidth) * (parseInt(pos) / 100);
         draw();
-      };
+      });
     };
     img.src = event.target.result;
   };

@@ -4,10 +4,24 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>KP7</title>
+
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="bower_components/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
+  <link href="bower_components/bootstrap-material-design/dist/css/material-wfont.min.css" rel="stylesheet">
+
   <link rel="stylesheet" href="main.css">
+
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/nouislider/distribute/jquery.nouislider.all.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+  <script src="bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
+  <script src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+
   <script type="text/javascript" src="bower_components/FileSaver/FileSaver.min.js"></script>
   <script type="text/javascript" src="bower_components/canvas-toBlob.js/canvas-toBlob.js"></script>
   <script type="text/javascript" src="bower_components/hidpi-canvas/dist/hidpi-canvas.min.js"></script>
+
   <script type="text/javascript" src="main.js"></script>
 </head>
 <body>
@@ -15,12 +29,21 @@
 <div class="holder" id="holder">
   <canvas id="canvas" width="500px" height="500px"></canvas>
 </div>
+
 <div class="desc">
-  <p>把大頭照拖進來框框裡，即可以產生新的大頭照。</p>
-  <p>縮放：<input id="zoom" type="range" min="0" max="100" value="0" step="1"></input> </p>
-  <p>左右：<input id="move" type="range" min="0" max="100" value="50" step="1"></input> </p>
-  <button id="save">Save</button>
-  <p>Pull request welcome, <a href="https://github.com/yurenju/kp7">github</a>
+  <p class="text-center">把大頭照拖進來框框裡，即可以產生新的大頭照。</p>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <h5>縮放：</h5>
+      <div id="zoom-slider" class="slider"></div>
+      <h5>左右：</h5>
+      <div id="move-slider" class="slider slider-success"></div>
+      <div class="text-center">
+        <button id="save" class="btn btn-primary btn-lg">Save</button>
+      </div>
+    </div>
+  </div>
+  <p class="text-center">Pull request welcome, <a href="https://github.com/yurenju/kp7">github</a>
 </div>
 
 <script>
