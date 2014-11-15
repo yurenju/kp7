@@ -3,12 +3,23 @@
 document.addEventListener('DOMContentLoaded', function(e) {
   'use strict';
 
-  var canvas = document.getElementById('canvas');
-  var ctx = canvas.getContext('2d');
   var holder = document.getElementById('holder');
   var save = document.getElementById('save');
   var zoom = document.getElementById('zoom');
+  var picker = document.getElementById('picker');
   var img;
+
+  var canvasWidth = Math.min(
+    ((window.innerWidth > 0) ? window.innerWidth : screen.width) * 0.9,
+    500);
+
+  var canvas = document.createElement('canvas');
+  canvas.setAttribute('id', 'canvas');
+  canvas.width = canvasWidth;
+  canvas.height = canvasWidth;
+  holder.appendChild(canvas);
+
+  var ctx = canvas.getContext('2d');
 
   var getPixelRatio = function(context) {
       var backingStore = context.backingStorePixelRatio ||
@@ -22,6 +33,26 @@ document.addEventListener('DOMContentLoaded', function(e) {
   };
 
   var ratio = getPixelRatio(ctx);
+
+  var readFile = function(e) {
+    e.preventDefault();
+    var file;
+
+    if (this.files && this.files.length > 0) {
+      file = this.files[0];
+    } else {
+      file = e.dataTransfer.files[0];
+    }
+
+    var reader = new FileReader();
+
+    reader.onload = function (event) {
+      setupImage(event);
+    };
+    reader.readAsDataURL(file);
+    ga('_trackEvent', 'Picture', 'Add');
+    return false;
+  };
 
   save.onclick = function() {
     canvas.toBlob(function(blob) {
@@ -44,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
     var draw = function() {
       ctx.drawImage(img, sx, sy, sWidth * percent, sHeight * percent,
-        0, 0, 250 * ratio, 500 * ratio);
+        0, 0, canvasWidth / 2 * ratio, canvasWidth * ratio);
     };
 
     img = new Image();
@@ -70,23 +101,13 @@ document.addEventListener('DOMContentLoaded', function(e) {
     img.src = event.target.result;
   };
 
-  holder.ondrop = function(e) {
-    e.preventDefault();
-    var file = e.dataTransfer.files[0];
-    var reader = new FileReader();
-
-    reader.onload = function (event) {
-      setupImage(event);
-    };
-    reader.readAsDataURL(file);
-    ga('_trackEvent', 'Picture', 'Add');
-    return false;
-  };
+  holder.ondrop = readFile;
+  picker.onchange = readFile;
 
   var originalImage = new Image();
   originalImage.onload = function() {
     ctx.drawImage(this, 0, 0, this.width, this.height, 0, 0,
-      500 * ratio, 500 * ratio);
+      canvasWidth * ratio, canvasWidth * ratio);
   };
   originalImage.src = "images/original.jpg";
 });

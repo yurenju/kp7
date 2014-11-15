@@ -3,20 +3,32 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
   <title>KP7</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
   <link rel="stylesheet" href="main.css">
   <script type="text/javascript" src="bower_components/FileSaver/FileSaver.min.js"></script>
   <script type="text/javascript" src="bower_components/canvas-toBlob.js/canvas-toBlob.js"></script>
   <script type="text/javascript" src="bower_components/hidpi-canvas/dist/hidpi-canvas.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
   <script type="text/javascript" src="main.js"></script>
 </head>
 <body>
 
-<div class="holder" id="holder">
-  <canvas id="canvas" width="500px" height="500px"></canvas>
-</div>
+<div class="holder" id="holder"></div>
 <div class="desc">
-  <p>把大頭照拖進來框框裡，即可以產生新的大頭照。</p>
+  <p>把大頭照拖進來框框裡或按下面的拍照，即可以產生新的大頭照。</p>
+  <p>
+    <span class="btn btn-default btn-file">
+        <span class="glyphicon glyphicon-camera"></span> <input id="picker" type="file" accept="image/*"></input>
+    </span>
+  </p>
   <p>縮放：<input id="zoom" type="range" min="0" max="100" value="0" step="1"></input> </p>
   <p>左右：<input id="move" type="range" min="0" max="100" value="50" step="1"></input> </p>
   <button id="save">Save</button>
